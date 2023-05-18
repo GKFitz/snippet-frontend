@@ -3,10 +3,13 @@ import { Routes, Route } from 'react-router-dom'
 import Index from "../pages/Index";
 import Show from "../pages/Show";
 
-export const Main = () => {
+export const Main = (props) => {
     return (
-        <div>
-            
-        </div>
+        <main>
+            <Routes>
+                <Route exact path="/" element={ <Index/> }/>
+                <Route path="/people/:id" element={ <Show/> }/>
+            </Routes>
+        </main>
     )
 }
