@@ -5,37 +5,38 @@ import Index from "../pages/Index";
 import Show from "../pages/Show";
 
 export const Main = (props) => {
-    const [ directory, setPeople ] = useState(null);
+    const [ directories, setDirectories ] = useState(null);
 
   const URL = "http://localhost:4000/api/directory/";
 
-  const getPeople = async () => {
+  const getDirectories = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    setPeople(data);
+    setDirectories(data);
   };
 
-  const createPeople = async (person) => {
-    // make post request to create people
+  const createDirectories = async (directory) => {
+    // make post request to create directories
     await fetch(URL, {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
       },
-      body: JSON.stringify(person),
+      body: JSON.stringify(directory),
     });
     // update list of people
-    getPeople();
+    getDirectories();
   };
 
-  useEffect(() => getPeople(), []);
+  useEffect(() => getDirectories, []);
 
     return (
         <main>
             <Routes>
-                <Route exact path="/" element={ <Index/> }/>
-                <Route path="/people/:id" element={ <Show/> }/>
+                <Route exact path="/" element={ <Index directories={directories} createDirectories={createDirectories}/> }/>
+                <Route path="/directory/:id" element={ <Show/> }/>
             </Routes>
         </main>
     )
 }
+export default Main;
