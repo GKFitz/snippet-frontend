@@ -1,8 +1,7 @@
-import React from 'react'
 import { useState } from "react";
 import { Link } from "react-router-dom"
 
-export const Index = (props) => {
+const Index = (props) => {
     // state to hold formData
   const [ newForm, setNewForm ] = useState({
     title: "",
@@ -11,27 +10,27 @@ export const Index = (props) => {
 
   // handleChange function for form
   const handleChange = (event) => {
-    setNewForm({ ...newForm, [event.target.title]: event.target.value });
+    setNewForm({ ...newForm, [event.target.name]: event.target.value });
   };
 
   // handle submit function for form
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.createPeople(newForm);
+    props.createDirectories(newForm);
     setNewForm({
       title: "",
-      description: "",
+      description: ""
     
     });
   };
     // loaded function
     const loaded = () => {
         return props.directories.map((directory) => (
-        <div key={directory._id} className="directory">
-            <Link to={`/directory/${directory._id}`}><h1>{directory.title}</h1></Link>
-            <h3>{directory.description}</h3>
-        </div>
-            ));
+            <div key={directory._id} className="directory">
+                <Link to={`/api/directory/${directory._id}`}><h1>{directory.title}</h1></Link>
+                <h3>{directory.description}</h3>
+            </div>
+        ));
     };
 
     const loading = () => {
@@ -60,7 +59,7 @@ export const Index = (props) => {
                 />
                 <input type="submit" value="Create New Directory" />
             </form>
-            {props.directory ? loaded() : loading()}
+            {props.directories ? loaded() : loading()}
         </section>
     );
 } 
