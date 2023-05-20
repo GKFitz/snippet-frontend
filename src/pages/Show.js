@@ -8,9 +8,9 @@ const Show = (props) => {
   const directories = props.directories
   console.log(id);
   
-  const directory = directory ? directory.find((p) => p._id === id ) : null
+  const directory = directories ? directories.find((d) => d._id === id ) : null
 
-  const [ editForm, setEditForm ] = useState(directory)
+  const [ editForm, setEditForm ] = useState(directories)
 
   //stop autoloading 5/17
   const [ isEditing, setIsEditing ] = useState(false)

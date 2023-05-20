@@ -9,7 +9,7 @@ export const Main = (props) => {
 
   const URL = "http://localhost:4000/api/directory/";
 
-  const getDirectories = async () => {
+  const getDirectory = async () => {
     console.log("i've been hit!")
     const response = await fetch(URL);
     const data = await response.json();
@@ -26,10 +26,10 @@ export const Main = (props) => {
       body: JSON.stringify(directory),
     });
     // update list of people
-    getDirectories();
+    getDirectory();
   };
 
-  const updateDirectories = async (person, id) => {
+  const updateDirectory = async (person, id) => {
     // make put request to create people
     await fetch(URL + id, {
       method: "PUT",
@@ -39,16 +39,30 @@ export const Main = (props) => {
       body: JSON.stringify(person),
     });
     // update list of people
-    getDirectories();
+    getDirectory();
   }
 
-  useEffect(() => getDirectories, []);
+  const deleteDirectory = async id => {
+    // make delete request to create directory
+    await fetch(URL + id, {
+      method: "DELETE",
+    })
+    // update list of people
+    getDirectory();
+  }
+
+  useEffect(() => getDirectory, []);
 
     return (
         <main>
             <Routes>
                 <Route exact path="/" element={ <Index directories={directories} createDirectories={createDirectories}/> }/>
-                {/* <Route path="/api/directory/:id" element={ <Show/> }/> */}
+                <Route path="/api/directory/:id" element={ <Show
+                directories={directories}
+                updateDirectory={updateDirectory}
+                // deleteDirectory={deleteDirectory}
+
+                /> }/>
             </Routes>
         </main>
     )
