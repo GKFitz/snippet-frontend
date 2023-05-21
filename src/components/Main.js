@@ -57,11 +57,10 @@ export const Main = (props) => {
         <main>
             <Routes>
                 <Route exact path="/" element={ <Index directories={directories} createDirectories={createDirectories}/> }/>
-                <Route path="/api/directory/:id" element={ <Show
+                <Route path="/directory/:id" element={ <Show
                 directories={directories}
                 updateDirectory={updateDirectory}
-                // deleteDirectory={deleteDirectory}
-
+                deleteDirectory={deleteDirectory}
                 /> }/>
             </Routes>
         </main>

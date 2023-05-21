@@ -51,13 +51,10 @@ const Show = (props) => {
       <>
         <h1>{directory.title}</h1>
         <h2>{directory.description}</h2>
-        <img 
-          className="avatar-image" 
-          src={directory.title} 
-          alt={directory.description} 
-        />
+        
+        {/* <h2>{directory.snippets}</h2> */}
         {/* to */}
-        <button onClick={handleEdit}>{ isEditing ? 'Cancel Edit': 'edit'}</button>
+        <button onClick={handleEdit}>{ isEditing ? 'Cancel Snippet': 'Add Snippet'}</button>
         <button onClick={handleDelete}>Delete</button>
       </>
     );
@@ -72,7 +69,7 @@ const Show = (props) => {
       {/* if this AND this is turn no render */}
       { isEditing && 
       <form onSubmit={handleUpdate}>
-        <input
+          {/* <input 
           type="text"
           value={editForm.title}
           name="title"
@@ -84,6 +81,42 @@ const Show = (props) => {
           value={editForm.description}
           name="description"
           placeholder="description"
+          onChange={handleChange}
+        /> */}
+        {/* <input
+          type="text"
+          value={editForm.snippets}
+          name="snippets"
+          placeholder="snippets"
+          onChange={handleChange}
+        /> */}
+        <input
+        
+          type="text"
+          value={editForm.title}
+          name="title"
+          placeholder="title"
+          onChange={handleChange}
+        />
+        <input 
+          type="description"
+          value={editForm.description}
+          name="description"
+          placeholder="description"
+          onChange={handleChange}
+        />
+        <input
+          type="codeSnip"
+          value={editForm.codeSnip}
+          name="codeSnip"
+          placeholder="codeSnip"
+          onChange={handleChange}
+        />
+         <input
+          type="article"
+          value={editForm.article}
+          name="article"
+          placeholder="article"
           onChange={handleChange}
         />
         <input type="submit" value="Add Snippet" />
