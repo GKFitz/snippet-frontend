@@ -10,7 +10,8 @@ import SnipDetails from "./SnippetDetails";
 export const Main = (props) => {
     const [ directories, setDirectories ] = useState(null);
 
-  const URL = "http://localhost:4000/api/directory/";
+  // const URL = "http://localhost:4000/api/directory/";
+  const URL = "https://gillians-code-cache-app-be.onrender.com/api/directory/";
 
   const getDirectory = async () => {
     console.log("i've been hit!")

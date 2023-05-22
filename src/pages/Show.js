@@ -13,7 +13,7 @@ const Show = (props) => {
   const directory = directories ? directories.find((d) => d._id === id ) : null
   const [snippets, setSnippets] = useState([])
   //This will control the state between creating/adding the snippet
-    const [snippetId, setSnippetId] = useState('')
+  const [snippetId, setSnippetId] = useState('')
   //The State of the EditForm, performs duel add and edit function
   const [editForm, setEditForm] = useState({
     title: "",
@@ -32,7 +32,8 @@ const Show = (props) => {
   //this loads the snips to the corresponding Directory
   useEffect( () => {
    
-    fetch(`http://localhost:4000/api/directory/get/${id}`, {
+    // fetch(`http://localhost:4000/api/directory/get/${id}`, {
+    fetch(`https://gillians-code-cache-app-be.onrender.com/api/directory/get/${id}/`, {
       method: "GET",
       headers: {
         "content-Type": "application/json"
@@ -54,15 +55,16 @@ const Show = (props) => {
   }
 
   // Add new snippet
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     console.log(id)
     console.log(isEditing)
     console.log(snippetId)
-  if(mode === "Add Snippet") {
+    if(mode === "Add Snippet") {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
       // Edit
-      fetch(`http://localhost:4000/api/directory/${id}`, {
+      // fetch(`http://localhost:4000/api/directory/${id}`, {
+      fetch(`https://gillians-code-cache-app-be.onrender.com/api/directory/${id}/`, {
           method: "PATCH",
           headers: {
           "content-Type": "application/json"
@@ -82,7 +84,8 @@ const Show = (props) => {
         })
       }else if (mode === "Update Snippet") {
       //Add
-      fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
+      // fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
+      fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/update/${snippetId}/`,{
         method: "PUT",
         headers:{
           "content-Type": "application/json"
@@ -100,7 +103,8 @@ const Show = (props) => {
       
   const handleEdit = (id) => {
     setInShow(prevState => !prevState)
-    fetch(`http://localhost:4000/api/snippets/${id}`,{
+    // fetch(`http://localhost:4000/api/snippets/${id}`,{
+    fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/${id}/`,{
       method: "GET",
       headers: {
         "content-Type": "application/json"
@@ -129,7 +133,8 @@ const Show = (props) => {
   
   //This in the Function for the Delete button on the Snips
   const handleDelete = (snippet) => {
-    fetch(`http://localhost:4000/api/snippets/delete/${snippet}`, {
+    // fetch(`http://localhost:4000/api/snippets/delete/${snippet}`, {
+    fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/delete/${snippet}/`, {
       method: "DELETE",
       headers:{
         "content-Type": "application/json"
