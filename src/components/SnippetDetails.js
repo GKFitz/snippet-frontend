@@ -6,6 +6,20 @@ import { useParams } from "react-router-dom";
     const [Snippet,setSnippet] = useState({})
     const {id}= useParams()
 //  Need a useEffect here with Fetch Get Request
+useEffect(() => {
+    fetch(`http://localhost:4000/api/snippets/${id}`, {
+        method: "GET",
+        headers: {
+        "content-TYpe": "application/json"
+    }
+    }).then(res=>res.json())
+    .then(res=>{
+      console.log(res)
+      setSnippet(res)
+    })
+    }, [])
+
+
     
     // const snippetId = params.snippetID
     return (
