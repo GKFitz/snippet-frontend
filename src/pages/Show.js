@@ -115,14 +115,16 @@ const [ inShow, setInShow ] = useState(false)
       });
     //Call State
       setIsEditing(!isEditing)
-      setSnippetId(res.id)
+      setSnippetId(res._id)
       setMode('Update Snippet')
         
     })
   }
       
   //This Handles the Add a new Snippet logic
-  
+  const handleShowForm = () => {
+    setInShow(prevState => !prevState)
+  }
   
   //This in the Function for the Delete button on the Snips
   const handleDelete = (snippet) => {
@@ -137,9 +139,7 @@ const [ inShow, setInShow ] = useState(false)
   }
 
 
-  const handleShowForm = () => {
-    setInShow(prevState => !prevState)
-  }
+  
 
   const loaded = () => {
     return (
