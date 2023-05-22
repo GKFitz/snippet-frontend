@@ -15,9 +15,9 @@ import { useParams } from "react-router-dom";
     }
     }).then(res=>res.json())
     .then(res=>{
-      console.log(res)A
+      console.log(res);
       setSnippet(res)
-    })
+    });
     }, [])
 
 
