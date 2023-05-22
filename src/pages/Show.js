@@ -24,6 +24,7 @@ const Show = (props) => {
   
   //stop autoloading 5/17
   const [ isEditing, setIsEditing ] = useState(false)
+  const [isShow, setIsShow] = useState(false)
   useEffect( () => {
    
     fetch(`http://localhost:4000/api/directory/get/${id}`, {
@@ -84,7 +85,7 @@ const Show = (props) => {
     <div className="directory">
       { directory ? loaded() : loading()}
       {/* if this AND this is turn no render */}
-      { isEditing  &&
+      { (isShow == true)  &&
         <form onSubmit={handleUpdate}>
           <input
             type="text"
