@@ -12,6 +12,7 @@ const Show = (props) => {
     
   const directory = directories ? directories.find((d) => d._id === id ) : null
   const [snippets, setSnippets] = useState([])
+  //This will control the state between creating/adding the snippet
   const [snippetId, setSnippetId] = useState('')
   const [editForm, setEditForm] = useState({
     title: "",
@@ -19,28 +20,27 @@ const Show = (props) => {
     codeSnip: "",
     articles: ""
   })
-  
-
-  
   //stop autoloading 5/17
   const [ isEditing, setIsEditing ] = useState(false);
   //This is the state between edit/update form
   const [isShow, setIsShow] = useState(false);
+  
+  //this loads the snips to the corresponding 
   useEffect( () => {
    
-      fetch(`http://localhost:4000/api/directory/get/${id}`, {
-        method: "GET",
-        headers: {
-          "content-TYpe": "application/json"
-        }
-        }).then(res=>res.json())
+    fetch(`http://localhost:4000/api/directory/get/${id}`, {
+      method: "GET",
+      headers: {
+        "content-TYpe": "application/json"
+      }
+      }).then(res=>res.json())
         .then(res=>{
           console.log(res.snippets)
           setSnippets(res.snippets)
-        })
+      })
   }, [])
   
-  
+  console.log(snippets)
   //This handles the Form Data Change
   const handleChange = (e) => {
     setEditForm({
@@ -49,11 +49,14 @@ const Show = (props) => {
     })
   }
 
-  // add new snippet
+  // Add new snippet
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(id)
+    console.log(isEditing)
     if(!handleEdit) {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
+      // Edit
       fetch(`http://localhost:4000/api/directory/${id}`, {
         method: "PATCH",
         headers: {
@@ -73,6 +76,7 @@ const Show = (props) => {
           console.log(error)
       });
     }else if (handleEdit) {
+      //Add
       fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
         method: "PUT",
         headers:{
@@ -105,8 +109,9 @@ const Show = (props) => {
         codeSnip: editForm.codeSnip,
         articles: editForm.articles
       });
-      
-        
+      //Call State
+      setIsEditing(!isEditing)
+      console.log(isEditing)
         
     })
   }
@@ -129,8 +134,8 @@ const Show = (props) => {
         
 
         <button onClick={handleShowForm}>Add New Snippet</button>
-        <button onClick={handleEdit}>{ isEditing ? 'Cancel Edit': 'edit'}</button>
-        <button onClick={handleDelete}>Delete</button>
+        <button onClick={handleEdit}>{ isEditing ? 'Add Snippet': 'Edit Snippet'}</button>
+        
       </>
     );
   };
