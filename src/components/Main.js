@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Index from "../pages/Index";
 import Show from "../pages/Show";
 import About from "../pages/About";
+import SnipDetails from "./SnippetDetails";
 
 
 export const Main = (props) => {
@@ -67,6 +68,7 @@ export const Main = (props) => {
                 updateDirectory={updateDirectory}
                 deleteDirectory={deleteDirectory}
                 /> }/>
+                <Route path="/snip/:id" element= {<SnipDetails /> } />
                 {/* <Route path = "/directory/:id/snippets/:id" element={<SnippetDetails /> } /> */}
             </Routes>
         </main>
