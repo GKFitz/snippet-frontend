@@ -24,6 +24,9 @@ const Show = (props) => {
   const [ isEditing, setIsEditing ] = useState(false);
   //This is the state between edit/update form
   const [isShow, setIsShow] = useState(false);
+
+  // Using this to control the switch between the add and edit buttons ref: https://kentcdodds.com/blog/wrapping-react-use-state-with-type-script
+  const [mode, setMode] =useState("Add Snippet")
   
   //this loads the snips to the corresponding 
   useEffect( () => {
@@ -54,7 +57,7 @@ const Show = (props) => {
     e.preventDefault()
     console.log(id)
     console.log(isEditing)
-    if(!handleEdit) {
+    if(mode == "Add Snippet") {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
       // Edit
       fetch(`http://localhost:4000/api/directory/${id}`, {
@@ -75,7 +78,7 @@ const Show = (props) => {
         }).catch(error=>{
           console.log(error)
       });
-    }else if (handleEdit) {
+    }else if (mode == "Update") {
       //Add
       fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
         method: "PUT",
@@ -112,27 +115,27 @@ const Show = (props) => {
       //Call State
       setIsEditing(!isEditing)
       console.log(isEditing)
+      setSnippetId(res.id)
+      setMode('Update Snippet')
         
     })
   }
       
   //This Handles the Add a new Snippet logic
   const handleShowForm = () => {
-      setIsShow(prevState => !prevState)
-    }
+    setIsShow(prevState => !prevState)
+  }
   
-    const handleDelete = () => {
-      props.deleteDirectory(directory._id)
-      navigate('/')
-    }
+  const handleDelete = () => {
+    props.deleteDirectory(directory._id)
+    navigate('/')
+  }
 
   const loaded = () => {
     return (
       <>
         <h1>{directory.title}</h1>
         <h2>{directory.description}</h2>
-        
-
         <button onClick={handleShowForm}>Add New Snippet</button>
         <button onClick={handleEdit}>{ isEditing ? 'Add Snippet': 'Edit Snippet'}</button>
         
@@ -147,7 +150,7 @@ const Show = (props) => {
     <div className="directory">
       { directory ? loaded() : loading()}
       {/* if this AND this is turn no render */}
-      { (isShow == true)  &&
+      { (isShow === true)  &&
         <form onSubmit={handleSubmit}>
           <input
             type="text"
