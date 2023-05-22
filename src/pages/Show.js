@@ -57,7 +57,8 @@ const Show = (props) => {
       // console.log(snippet);
       console.log(snippetId)
     }
-  
+    
+    if(!handleEdit) {
     //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
     fetch(`http://localhost:4000/api/directory/${id}`, {
       method: "PATCH",
@@ -70,10 +71,31 @@ const Show = (props) => {
         codeSnip: editForm.codeSnip,
         articles: editForm.articles
       }),
+      }).then(res => res.json)
+        .then((res) => {
+          console.log(res);
+          alert('new snippet added');
+        }).catch(error=>{
+          console.log(error)
+        })
+      
 
-
-
-
+    }else if (handleEdit) {
+      fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
+        method: "PUT",
+        headers:{
+          "content-Type": "application?json"
+        },
+      body: JSON.stringify({
+        title: editForm.title,
+        description: editForm.description,
+        codeSnip: editForm.codeSnip,
+        articles: editForm.articles
+      })
+    }.then(res => res.json)
+      .then((res) => {
+        console.log(res);
+      }
 
 
 
