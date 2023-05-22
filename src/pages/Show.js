@@ -1,12 +1,12 @@
 import React from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 
 
 const Show = (props) => {
   const { id } = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const directories = props.directories
   console.log(id);
     
@@ -29,7 +29,7 @@ const Show = (props) => {
   const [inShow, setInShow] = useState(false);
 
   
-  //this loads the snips to the corresponding 
+  //this loads the snips to the corresponding Directory
   useEffect( () => {
    
     fetch(`http://localhost:4000/api/directory/get/${id}`, {
@@ -128,9 +128,15 @@ const Show = (props) => {
     setInShow(prevState => !prevState)
   }
   
-  const handleDelete = () => {
-    props.deleteDirectory(directory._id)
-    navigate('/')
+  const handleDelete = (snippet) => {
+    fetch(`http://localhost:4000/api/snippets/delete/${snippet}`, {
+      method: "DELETE",
+      headers:{
+        "content-Type": "application?json"
+      }
+    }).then(res => res.json())
+    .then(res => console.log(res))
+    
   }
 
   const loaded = () => {
