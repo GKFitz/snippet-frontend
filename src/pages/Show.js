@@ -1,6 +1,7 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import snippets from '../../../backend/models/snippets';
 
 
 const Show = (props) => {
@@ -10,25 +11,48 @@ const Show = (props) => {
   console.log(id);
     
   const directory = directories ? directories.find((d) => d._id === id ) : null
+  const [snippets, setSnippets] = useState([])
+  const [snippetId, setSnippetId] = useState('')
+  const [editForm, setEditForm] = useState({
+    title: "",
+    description: "",
+    codeSnip: "",
+    articles: ""
+  })
   
-  const [ editForm, setEditForm ] = useState(directory)
+
   
   //stop autoloading 5/17
   const [ isEditing, setIsEditing ] = useState(false)
-  
   useEffect( () => {
-    if (directory) {
-      setEditForm(directory)
-    }
-    }, [directory])
-  
-    // handling form data change
-    const handleChange = (e) => {
-      setEditForm( {
-        ...editForm,
-       [e.target.name]: e.target.value 
+   
+    fetch(`http://localhost:4000/api/directory/get/${id}`, {
+      method: "GET",
+      headers: {
+        "content-TYpe": "application/json"
+      }
+      }).then(res=>res.json())
+      .then(res=>{
+        console.log(res.snippets)
+        setSnippets(res.snippets)
       })
-    }
+  }, [])
+  console.log(snippets)
+  // handling form data change
+  const handleChange = (e) => {
+    setEditForm({
+      ...editForm,
+      [e.target.name]: e.target.value
+    })
+  }
+  
+    // // handling form data change
+    // const handleChange = (e) => {
+    //   setEditForm( {
+    //     ...editForm,
+    //    [e.target.name]: e.target.value 
+    //   })
+    // }
     
     // handling submit event for edit form
     const handleUpdate = (e) => {
@@ -77,14 +101,14 @@ const Show = (props) => {
             onChange={handleChange}
             required
           />
-          <input
+          <textarea
             type="text"
             value={editForm.description}
             name="description"
             placeholder="description"
             onChange={handleChange}
             required
-          /> 
+          ></textarea> 
           <input
             type="text"
             value={editForm.codeSnip}
@@ -107,6 +131,12 @@ const Show = (props) => {
         </form>
       }
       {/* This is where the map needs to go for the snips */}
+      {snippets.map((snip) =>
+          <div key={snip._id} className="snip">
+            <Link to={`/snip/${snip._id}`}><h3>{snip.title}</h3></Link>
+          </div>
+        
+        )}
      
 </div>
   );
