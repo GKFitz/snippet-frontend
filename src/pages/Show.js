@@ -38,12 +38,12 @@ const Show = (props) => {
       headers: {
         "content-Type": "application/json"
       }
-      }).then(res=>res.json())
-        .then(res=>{
-          console.log(res.snippets)
+      }).then(res => res.json())
+        .then(res => {
+          // console.log(res.snippets)
           setSnippets(res.snippets)
       })
-    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
   console.log(snippets)

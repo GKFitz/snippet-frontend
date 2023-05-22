@@ -13,11 +13,12 @@ import { useParams } from "react-router-dom";
         headers: {
         "content-Type": "application/json"
     }
-    }).then(res=>res.json())
-    .then(res=>{
-      console.log(res);
+    }).then(res => res.json())
+    .then(res => {
+        //console.log(res);
       setSnippet(res)
-    });
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
