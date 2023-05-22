@@ -24,59 +24,73 @@ const Show = (props) => {
   
   //stop autoloading 5/17
   const [ isEditing, setIsEditing ] = useState(false)
-  //showing the snips and the edit/update form
+  //This is the state between edit/update form
   const [isShow, setIsShow] = useState(false)
-  useEffect( () => {
+    useEffect( () => {
    
-    fetch(`http://localhost:4000/api/directory/get/${id}`, {
-      method: "GET",
-      headers: {
-        "content-TYpe": "application/json"
-      }
-      }).then(res=>res.json())
-      .then(res=>{
-        console.log(res.snippets)
-        setSnippets(res.snippets)
+      fetch(`http://localhost:4000/api/directory/get/${id}`, {
+        method: "GET",
+        headers: {
+          "content-TYpe": "application/json"
+        }
+        }).then(res=>res.json())
+        .then(res=>{
+          console.log(res.snippets)
+          setSnippets(res.snippets)
+        })
+    }, [])
+  
+
+    //This handles the Form Data Change
+    const handleChange = (e) => {
+      setEditForm({
+        ...editForm,
+        [e.target.name]: e.target.value
       })
-  }, [])
-  console.log(snippets)
-  // handling form data change
-  const handleChange = (e) => {
-    setEditForm({
-      ...editForm,
-      [e.target.name]: e.target.value
-    })
-  }
+    }
+  
   
     
     // Add a new Snippet
+    // const handleSubmit = (e) => {
+    //   e.preventDefault()
+    //   console.log(id)
+    //   console.log(isEditing)
+    //   // console.log(snippet);
+    //   console.log(snippetId)
+    // }
+
+    //This handles the Form Data Change
+    const handleChange = (e) => {
+      setEditForm({
+        ...editForm,
+        [e.target.name]: e.target.value
+      })
+    }
+
+    // add new snippet
     const handleSubmit = (e) => {
       e.preventDefault()
-      console.log(id)
-      console.log(isEditing)
-      // console.log(snippet);
-      console.log(snippetId)
-    }
     
-    if(!handleEdit) {
-    //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
-    fetch(`http://localhost:4000/api/directory/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: editForm.title,
-        description: editForm.description,
-        codeSnip: editForm.codeSnip,
-        articles: editForm.articles
-      }),
-      }).then(res => res.json)
-        .then((res) => {
-          console.log(res);
-          alert('new snippet added');
-        }).catch(error=>{
-          console.log(error)
+      if(!handleEdit) {
+      //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
+        fetch(`http://localhost:4000/api/directory/${id}`, {
+          method: "PATCH",
+          headers: {
+            "content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            title: editForm.title,
+            description: editForm.description,
+            codeSnip: editForm.codeSnip,
+            articles: editForm.articles
+          }),
+          }).then(res => res.json)
+            .then((res) => {
+            console.log(res);
+            alert('new snippet added');
+          }).catch(error=>{
+            console.log(error)
         })
       
 
@@ -95,17 +109,36 @@ const Show = (props) => {
     }.then(res => res.json)
       .then((res) => {
         console.log(res);
-      }
+      })
 
 
-
-
-
+    
+    //This Handles the Add a new Snippet logic
+    const handleShowForm = () => {
+      setIsShow(prevState => !prevState)
+    }
 
     const handleEdit = () => {
-        setIsEditing(prevState => !prevState)
+      setIsEditing(prevState => !prevState)
+      fetch(`http://localhost:4000/api/snippets/${id}`,{
+        method: "GET",
+        headers: {
+          "content-Type": "application?json"
+        }
+      }).then(res=>res.json))
+          .then((res) => {
+            console.log(res)
+          setEditForm({
+            title: editForm.title,
+            description: editForm.description,
+            codeSnip: editForm.codeSnip,
+            articles: editForm.articles
+          });
+        
+        
+      })
+      
     }
-  
   
     const handleDelete = () => {
       props.deleteDirectory(directory._id)
@@ -119,7 +152,7 @@ const Show = (props) => {
         <h2>{directory.description}</h2>
         
 
-
+        <button onClick={handleShowForm}>Add New Snippet</button>
         <button onClick={handleEdit}>{ isEditing ? 'Cancel Edit': 'edit'}</button>
         <button onClick={handleDelete}>Delete</button>
       </>
@@ -151,7 +184,7 @@ const Show = (props) => {
             onChange={handleChange}
             required
           ></textarea> 
-          <input
+          <textarea
             type="text"
             value={editForm.codeSnip}
             name="codeSnip"
@@ -160,7 +193,7 @@ const Show = (props) => {
             rows="4"
             cols="50"
             required
-          />
+          ></textarea>
 
           <input
             type="article"
