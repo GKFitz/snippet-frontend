@@ -148,7 +148,7 @@ const Show = (props) => {
         <h1>{directory.title}</h1>
         <h2>{directory.description}</h2>
         
-        <button onClick={handleShowForm}>Add New Form</button>
+        <button onClick={handleShowForm}>Add New Snippet</button>
         
       </>
     );
