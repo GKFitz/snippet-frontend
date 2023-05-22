@@ -63,8 +63,8 @@ const Show = (props) => {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
       // Edit
       fetch(`http://localhost:4000/api/directory/${id}`, {
-        method: "PATCH",
-        headers: {
+          method: "PATCH",
+          headers: {
           "content-Type": "application/json"
         },
         body: JSON.stringify({
