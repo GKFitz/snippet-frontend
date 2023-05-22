@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import snippets from '../../../backend/models/snippets';
+
 
 
 const Show = (props) => {
@@ -46,13 +46,6 @@ const Show = (props) => {
     })
   }
   
-    // // handling form data change
-    // const handleChange = (e) => {
-    //   setEditForm( {
-    //     ...editForm,
-    //    [e.target.name]: e.target.value 
-    //   })
-    // }
     
     // handling submit event for edit form
     const handleUpdate = (e) => {
