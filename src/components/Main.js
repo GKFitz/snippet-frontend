@@ -10,7 +10,7 @@ import SnipDetails from "./SnippetDetails";
 export const Main = (props) => {
     const [ directories, setDirectories ] = useState(null);
 
-  // const URL = "http://localhost:4000/api/directory/";
+  // const URL = "process.env.REACT_APP_BASE_URL";
   const URL = "https://gillians-code-cache-app-be.onrender.com/api/directory/";
 
   const getDirectory = async () => {
@@ -33,18 +33,18 @@ export const Main = (props) => {
     getDirectory();
   };
 
-  const updateDirectory = async (person, id) => {
-    // make put request to create people
-    await fetch(URL + id, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify(person),
-    });
+  // const updateDirectory = async (person, id) => {
+  //   // make put request to create people
+  //   await fetch(URL + id, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "Application/json",
+  //     },
+  //     body: JSON.stringify(person),
+  //   });
     // update list of people
-    getDirectory();
-  }
+  //   getDirectory();
+  // }
 
   const deleteDirectory = async id => {
     // make delete request to create directory
@@ -62,12 +62,12 @@ export const Main = (props) => {
             <Routes>
                 <Route exact path="/" element={ <Index 
                 directories={directories} 
-                createDirectories={createDirectories}/> }/>
+                createDirectories={createDirectories}
+                deleteDirectory={deleteDirectory}
+                /> }/>
                 <Route path='about' element= { <About/>} />
                 <Route path="/directory/:id" element={ <Show
                 directories={directories}
-                updateDirectory={updateDirectory}
-                deleteDirectory={deleteDirectory}
                 /> }/>
                 <Route path="/snip/:id" element= {<SnipDetails /> } />
                 {/* <Route path = "/directory/:id/snippets/:id" element={<SnippetDetails /> } /> */}

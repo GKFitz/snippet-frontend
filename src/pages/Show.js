@@ -65,7 +65,7 @@ const Show = (props) => {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
       // Edit
       // fetch(`http://localhost:4000/api/directory/${id}`, {
-      fetch(`https://gillians-code-cache-app-be.onrender.com/api/directory/${id}/`, {
+      fetch(`${process.env.REACT_APP_BASE_URL}/api/directory/${id}/`, {
           method: "PATCH",
           headers: {
           "content-Type": "application/json"
@@ -79,6 +79,12 @@ const Show = (props) => {
         }).then(res => res.json)
           .then((res) => {
           console.log(res);
+          setSnippets([
+            ...snippets,
+            res
+
+            
+          ])
           alert('New snippet added');
         }).catch(error=>{
           console.log(error)
@@ -86,7 +92,7 @@ const Show = (props) => {
       }else if (mode === "Update Snippet") {
       //Add
       // fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
-      fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/update/${snippetId}/`,{
+      fetch(`${process.env.REACT_APP_BASE_URL}/api/snippets/update/${snippetId}/`,{
         method: "PUT",
         headers:{
           "content-Type": "application/json"
@@ -105,7 +111,7 @@ const Show = (props) => {
   const handleEdit = (id) => {
     setInShow(prevState => !prevState)
     // fetch(`http://localhost:4000/api/snippets/${id}`,{
-    fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/${id}/`,{
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/snippets/${id}/`,{
       method: "GET",
       headers: {
         "content-Type": "application/json"
@@ -135,7 +141,7 @@ const Show = (props) => {
   //This in the Function for the Delete button on the Snips
   const handleDelete = (snippet) => {
     // fetch(`http://localhost:4000/api/snippets/delete/${snippet}`, {
-    fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/delete/${snippet}/`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/snippets/delete/${snippet}/`, {
       method: "DELETE",
       headers:{
         "content-Type": "application/json"

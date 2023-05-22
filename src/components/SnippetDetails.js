@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 //  Need a useEffect here with Fetch Get Request
     useEffect(() => {
         // (`http://localhost:4000/api/snippets/${id}`, {
-        fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/${id}/`, {
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/snippets/${id}/`, {
         method: "GET",
         headers: {
         "content-Type": "application/json"
