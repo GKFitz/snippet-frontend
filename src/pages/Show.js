@@ -20,13 +20,14 @@ const Show = (props) => {
     codeSnip: "",
     articles: ""
   })
-  //stop autoloading 5/17
-  const [ isEditing, setIsEditing ] = useState(false);
-  //This is the state between edit/update form
-  const [isShow, setIsShow] = useState(false);
 
   // Using this to control the switch between the add and edit buttons ref: https://kentcdodds.com/blog/wrapping-react-use-state-with-type-script
   const [mode, setMode] =useState("Add Snippet")
+  //stop autoloading 5/17
+  const [ isEditing, setIsEditing ] = useState(false);
+  //This is the state between edit/update form
+  const [inShow, setInShow] = useState(false);
+
   
   //this loads the snips to the corresponding 
   useEffect( () => {
@@ -41,7 +42,7 @@ const Show = (props) => {
           console.log(res.snippets)
           setSnippets(res.snippets)
       })
-  }, [])
+  }, [id])
   
   console.log(snippets)
   //This handles the Form Data Change
@@ -57,7 +58,8 @@ const Show = (props) => {
     e.preventDefault()
     console.log(id)
     console.log(isEditing)
-    if(mode == "Add Snippet") {
+    console.log(snippetId)
+    if(mode === "Add Snippet") {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
       // Edit
       fetch(`http://localhost:4000/api/directory/${id}`, {
@@ -78,7 +80,7 @@ const Show = (props) => {
         }).catch(error=>{
           console.log(error)
       });
-    }else if (mode == "Update") {
+    }else if (mode === "Update") {
       //Add
       fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
         method: "PUT",
@@ -96,12 +98,12 @@ const Show = (props) => {
       }
   }
       
-  const handleEdit = () => {
-    setIsShow(prevState => !prevState)
+  const handleEdit = (id) => {
+    setInShow(prevState => !prevState)
     fetch(`http://localhost:4000/api/snippets/${id}`,{
       method: "GET",
       headers: {
-        "content-Type": "applicationjson"
+        "content-Type": "application/json"
       }
       }).then(res=>res.json())
         .then(res => {
@@ -123,7 +125,7 @@ const Show = (props) => {
       
   //This Handles the Add a new Snippet logic
   const handleShowForm = () => {
-    setIsShow(prevState => !prevState)
+    setInShow(prevState => !prevState)
   }
   
   const handleDelete = () => {
@@ -137,7 +139,7 @@ const Show = (props) => {
         <h1>{directory.title}</h1>
         <h2>{directory.description}</h2>
         <button onClick={handleShowForm}>Add New Snippet</button>
-        <button onClick={handleEdit}>{ isEditing ? 'Add Snippet': 'Edit Snippet'}</button>
+        
         
       </>
     );
@@ -150,7 +152,7 @@ const Show = (props) => {
     <div className="directory">
       { directory ? loaded() : loading()}
       {/* if this AND this is turn no render */}
-      { (isShow === true)  &&
+      { (inShow === true)  &&
         <form onSubmit={handleSubmit}>
           <input
             type="text"
