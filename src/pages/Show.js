@@ -24,6 +24,7 @@ const Show = (props) => {
   
   //stop autoloading 5/17
   const [ isEditing, setIsEditing ] = useState(false)
+  //showing the snips and the edit/update form
   const [isShow, setIsShow] = useState(false)
   useEffect( () => {
    
@@ -48,12 +49,37 @@ const Show = (props) => {
   }
   
     
-    // handling submit event for edit form
-    const handleUpdate = (e) => {
+    // Add a new Snippet
+    const handleSubmit = (e) => {
       e.preventDefault()
-      props.updateDirectory(editForm, directory._id)
+      console.log(id)
+      console.log(isEditing)
+      // console.log(snippet);
+      console.log(snippetId)
     }
   
+    //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
+    fetch(`http://localhost:4000/api/directory/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: editForm.title,
+        description: editForm.description,
+        codeSnip: editForm.codeSnip,
+        articles: editForm.articles
+      }),
+
+
+
+
+
+
+
+
+
+
     const handleEdit = () => {
         setIsEditing(prevState => !prevState)
     }
@@ -86,7 +112,7 @@ const Show = (props) => {
       { directory ? loaded() : loading()}
       {/* if this AND this is turn no render */}
       { (isShow == true)  &&
-        <form onSubmit={handleUpdate}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={editForm.title}
