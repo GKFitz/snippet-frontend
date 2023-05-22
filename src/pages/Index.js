@@ -6,6 +6,7 @@ const Index = (props) => {
   const [ newForm, setNewForm ] = useState({
     title: "",
     description: "",
+    snippets: []
   });
 
   // handleChange function for form
@@ -19,7 +20,8 @@ const Index = (props) => {
     props.createDirectories(newForm);
     setNewForm({
       title: "",
-      description: ""
+      description: "",
+      snippets: []
     
     });
   };
@@ -29,6 +31,8 @@ const Index = (props) => {
             <div key={directory._id} className="directory">
                 <Link to={`/directory/${directory._id}`}><h1>{directory.title}</h1></Link>
                 <h3>{directory.description}</h3>
+                
+                
             </div>
         ));
     };

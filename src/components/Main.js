@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from 'react-router-dom'
 import Index from "../pages/Index";
 import Show from "../pages/Show";
+import About from "../pages/About";
+
 
 export const Main = (props) => {
     const [ directories, setDirectories ] = useState(null);
@@ -56,12 +58,16 @@ export const Main = (props) => {
     return (
         <main>
             <Routes>
-                <Route exact path="/" element={ <Index directories={directories} createDirectories={createDirectories}/> }/>
+                <Route exact path="/" element={ <Index 
+                directories={directories} 
+                createDirectories={createDirectories}/> }/>
+                <Route path='about' element= { <About/>} />
                 <Route path="/directory/:id" element={ <Show
                 directories={directories}
                 updateDirectory={updateDirectory}
                 deleteDirectory={deleteDirectory}
                 /> }/>
+                {/* <Route path = "/directory/:id/snippets/:id" element={<SnippetDetails /> } /> */}
             </Routes>
         </main>
     )

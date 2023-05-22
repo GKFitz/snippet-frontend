@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const SnippetList = () => {
+export const Snip = () => {
     return (
-        <div className= "snippet-list">
+        <div>
             
         </div>
     )
