@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 
 const Show = (props) => {
   const { id } = useParams()
-  // const navigate = useNavigate()
   const directories = props.directories
   console.log(id);
     
@@ -14,19 +13,19 @@ const Show = (props) => {
   const [snippets, setSnippets] = useState([])
   //This will control the state between creating/adding the snippet
   const [snippetId, setSnippetId] = useState('')
+  //The State of the EditForm, performs duel add and edit function
   const [editForm, setEditForm] = useState({
     title: "",
     description: "",
     codeSnip: "",
     articles: ""
   })
-
   // Using this to control the switch between the add and edit buttons ref: https://kentcdodds.com/blog/wrapping-react-use-state-with-type-script
-  const [mode, setMode] =useState("Add Snippet")
+const [mode, setMode] = useState("Add Snippet")
   //stop autoloading 5/17
-  const [ isEditing, setIsEditing ] = useState(false);
+  const [ isEditing, setIsEditing ] = useState(false)
   //This is the state between edit/update form
-  const [inShow, setInShow] = useState(false);
+const [ inShow, setInShow ] = useState(false)
 
   
   //this loads the snips to the corresponding Directory
@@ -35,14 +34,14 @@ const Show = (props) => {
     fetch(`http://localhost:4000/api/directory/get/${id}`, {
       method: "GET",
       headers: {
-        "content-TYpe": "application/json"
+        "content-Type": "application/json"
       }
       }).then(res=>res.json())
         .then(res=>{
           console.log(res.snippets)
           setSnippets(res.snippets)
       })
-  }, [id])
+  }, [])
   
   console.log(snippets)
   //This handles the Form Data Change
@@ -54,12 +53,12 @@ const Show = (props) => {
   }
 
   // Add new snippet
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault()
     console.log(id)
     console.log(isEditing)
     console.log(snippetId)
-    if(mode === "Add Snippet") {
+    if(mode == "Add Snippet") {
       //Using the editForm to Add/Patch snippet and the and Edit/Put the Snippets
       // Edit
       fetch(`http://localhost:4000/api/directory/${id}`, {
@@ -74,13 +73,13 @@ const Show = (props) => {
           articles: editForm.articles
         }),
         }).then(res => res.json)
-            .then((res) => {
-            console.log(res);
-            alert('new snippet added');
+          .then((res) => {
+          console.log(res);
+          alert('New snippet added');
         }).catch(error=>{
           console.log(error)
       });
-    }else if (mode === "Update") {
+    }else if (mode == "Update Snippet") {
       //Add
       fetch(`http://localhost:4000/api/snippets/update/${snippetId}`,{
         method: "PUT",
@@ -109,14 +108,13 @@ const Show = (props) => {
         .then(res => {
           console.log(res)
       setEditForm({
-        title: editForm.title,
-        description: editForm.description,
-        codeSnip: editForm.codeSnip,
-        articles: editForm.articles
+        title: res.title,
+        description: res.description,
+        codeSnip: res.codeSnip,
+        articles: res.articles
       });
-      //Call State
+    //Call State
       setIsEditing(!isEditing)
-      console.log(isEditing)
       setSnippetId(res.id)
       setMode('Update Snippet')
         
@@ -124,19 +122,23 @@ const Show = (props) => {
   }
       
   //This Handles the Add a new Snippet logic
-  const handleShowForm = () => {
-    setInShow(prevState => !prevState)
-  }
   
+  
+  //This in the Function for the Delete button on the Snips
   const handleDelete = (snippet) => {
     fetch(`http://localhost:4000/api/snippets/delete/${snippet}`, {
       method: "DELETE",
       headers:{
-        "content-Type": "application?json"
+        "content-Type": "application/json"
       }
     }).then(res => res.json())
     .then(res => console.log(res))
     
+  }
+
+
+  const handleShowForm = () => {
+    setInShow(prevState => !prevState)
   }
 
   const loaded = () => {
@@ -158,7 +160,7 @@ const Show = (props) => {
     <div className="directory">
       { directory ? loaded() : loading()}
       {/* if this AND this is turn no render */}
-      { (inShow === true)  &&
+      { (inShow == true)  &&
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -194,7 +196,7 @@ const Show = (props) => {
             placeholder="article"
             onChange={handleChange}
           />  
-          <input type="submit" value= "Add Snippet" />
+          <input type="submit" value={mode} />
         </form>
       }
       {/* This is where the map needs to go for the snips */}
@@ -206,9 +208,8 @@ const Show = (props) => {
           </div>
         
         )}
-     
-</div>
-  );
-};
+    </div>
+  )
+}
 
 export default Show
