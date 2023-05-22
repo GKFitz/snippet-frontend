@@ -43,7 +43,8 @@ const Show = (props) => {
           console.log(res.snippets)
           setSnippets(res.snippets)
       })
-  }, [id])
+    
+  }, [])
   
   console.log(snippets)
   //This handles the Form Data Change
