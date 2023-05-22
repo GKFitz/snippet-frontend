@@ -85,35 +85,34 @@ const Show = (props) => {
           articles: editForm.articles
         })
       }).then(res => res.json())
-      .then(res => console.log(res))
+        .then(res => console.log(res))
       }
-    }
+  }
       
-    
   const handleEdit = () => {
-      setIsEditing(prevState => !prevState)
-      fetch(`http://localhost:4000/api/snippets/${id}`,{
-        method: "GET",
-        headers: {
-          "content-Type": "applicationjson"
-        }
-      }).then(res=>res.json))
-          .then((res) => {
-            console.log(res)
-          setEditForm({
-            title: editForm.title,
-            description: editForm.description,
-            codeSnip: editForm.codeSnip,
-            articles: editForm.articles
-          });
-        
-        
-      })
+    setIsShow(prevState => !prevState)
+    fetch(`http://localhost:4000/api/snippets/${id}`,{
+      method: "GET",
+      headers: {
+        "content-Type": "applicationjson"
+      }
+      }).then(res=>res.json())
+        .then(res => {
+          console.log(res)
+      setEditForm({
+        title: editForm.title,
+        description: editForm.description,
+        codeSnip: editForm.codeSnip,
+        articles: editForm.articles
+      });
       
-    }
-
-    //This Handles the Add a new Snippet logic
-    const handleShowForm = () => {
+        
+        
+    })
+  }
+      
+  //This Handles the Add a new Snippet logic
+  const handleShowForm = () => {
       setIsShow(prevState => !prevState)
     }
   
