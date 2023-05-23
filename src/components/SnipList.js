@@ -9,7 +9,7 @@ const SnipList = (props) => {
         {props.snippets.map((snip) =>
             <div key={snip._id} className="snip">
               <Link to={`/snip/${snip._id}`}><h3>{snip.title}</h3></Link>
-              <span><button onClick={(e)=>props.handleEdit(snip._id)} >Edit</button> 
+              <span><button onClick={(e)=>props.handleEdit(snip._id)}>Edit</button> 
               <button onClick={(e)=>props.handleDelete(snip._id)} >Delete </button>
               </span>
             </div>

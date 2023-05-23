@@ -5,7 +5,7 @@ import Index from "../pages/Index";
 import Show from "../pages/Show";
 import About from "../pages/About";
 import SnipDetails from "./SnippetDetails";
-// import bgPhoto from "../assets/bgPhoto.jpg"
+
 
 
 export const Main = (props) => {
