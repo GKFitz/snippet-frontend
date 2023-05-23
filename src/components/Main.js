@@ -55,7 +55,7 @@ export const Main = (props) => {
     getDirectory();
   }
 
-  useEffect(() => getDirectory(), []);
+  useEffect(() => {getDirectory}, []);
 
     return (
         <main>
