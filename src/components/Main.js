@@ -54,8 +54,8 @@ export const Main = (props) => {
     // update list of people
     getDirectory();
   }
-
-  useEffect(() => {getDirectory}, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => getDirectory(), []);
 
     return (
         <main>
