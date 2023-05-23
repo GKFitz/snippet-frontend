@@ -1,31 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family:  'Concert';
+  background-image: url("../src/assets/desk.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: ;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+  font-family: roboto;
+  font-weight: bold;
+  
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: roboto;
+}
+.nav{
+  background-color: purple;
+  
+  
+}
+#home{
+
+}
+.about{
+  border: 1px solid black;
+  background-color: lightblue;
+} 
+.about h1 {
+  background: blue;
+  left:100x; 
+  top:100px
+
+
+}
+.about p{
+  background: blue;
+  margin: 100px;
+  /* width: 300px; */
+  height: 100px;
+  padding: 50px; 
+  border: 1px solid black;
+  background-color: lightblue;
+  
+
+}
+.title h1{
+  font-weight: bold;
+  font-size: 80px;
+  margin-right: 425px;
+  padding-right: 50px;
+
 }
 
+.create-form{
+  display: grid;
+  gap:20px;
+  padding-top: 50px;
+  margin-top: 70px;
+  margin-bottom: 120px;
+  color: white;
+  border: 1px solid white;
+  margin-right: 60%; 
+  /* background-color: ; */
+}
+
+#create{
+  color: black;
+  border: 1px solid black;
+  padding-top: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  width: 70%;
+  margin: 0 auto;
+  display: grid;
+  gap:20px;
+  background-color: lightblue;
+
+}
+#createDirectbtn{
+  background: purple;
+}
+
+
+.snipPage{
+  background-color: lightblue;
+  margin: 0 auto;
+  border: 1px solid black;
+
+}
+/* code snip presentation */
+.snippet-details{
+  display: grid;
+  padding-top: 20px;
+  margin-top: 50px;
+  color: white;
+  border: 1px solid black;
+  color: black;
+  background-color: lightblue;
+}
+.snippet-details h1{
+  font-size: 50px
+
+}
+#title{
+  color: Black;
+  font-weight: bold;
+}
+#description{
+  width: 70%;
+  margin: 0 auto;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 10px;
+}
 #codeSnip{
   width: 70%;
   margin: 0 auto;
-  color: skyblue;
+  color: white;
   padding: 10px;
-  border: 1px solid black
+  border: 1px solid white;
+  background-color: black;
+  font-weight: bold;
+  width: 300px;
+  height: 150px;
+  
 }
+#article {
+  color: black;
+  border: 1px solid white;
+  background-color: white;
+  font-weight: bold;
+  border: 1px solid black;
+
+}
+
+
 .snip{
   width: 90%;
   margin: 0 auto;
-  /* padding: 10px; */
+  padding: 10px; 
   border: 1px solid black;
   margin-bottom: 10px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
+  background-color: white;
+  color: cyan; 
+  /* display: grid; */
+ 
+  
+  
 }
+
+.directory form{
+  display: grid;
+  gap:20px;
+  background-color: lightblue;
+  border: 1px solid black;
+  /* padding-top: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  width: 70%;
+  margin: 0 auto; */
+
+
+}
+
+.directory {
+
+}
+/* #codeblock{
+  text: white;
+  background-color: black;
+
+} */
+
+.directoryFront{
+  border: 1px solid black;
+  display: grid;
+  gap:30px;
+  background-color: cornflowerblue;
+ 
+}
+  
+
+

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+
+// --------------------------
+// VARIABLES
+// --------------------------
+$maincolor: black;
+$contrastcolor: white;
+
+@mixin black-text-white-bg {
+  color: $contrastcolor;
+  background-color: $maincolor;
+}
+
+@mixin black-text-white-bg {
+  color: $maincolor;
+  background-color: $contrastcolor;
+}
+
+// --------------------------
+// Header
+// --------------------------
+
+// nav {
+//   @include black-text-cyan-bg;
+//   display: flex;
+//   justify-content: flex-start;
+
+//   a {
+//     @include white-text-black-bg;
+
+//     div {
+//       margin: 10px;
+//       font-size: large;
+//     }
+//   }
+// }
+// body {
+//   background-image: url("../assets/bgPhoto.jpg");
+//   background-size: contain;
+//   background-color: #282c34;
+//   padding: 40px;
+//   font-family: Arial;
+//   text-align: center;
+// }

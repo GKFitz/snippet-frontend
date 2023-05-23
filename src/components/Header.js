@@ -5,10 +5,12 @@ function Header(props) {
   return (
     <nav className="nav">
       <Link to="/">
-        <div>Code Cache App</div>
+        <div id="home">Home</div>
       </Link>
+      <br/>
+      <br/>
       <Link to="/about">
-        <div>About</div>
+        <div id="about">About</div>
       </Link>
     </nav>
   );

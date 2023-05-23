@@ -159,11 +159,12 @@ const Show = (props) => {
   const loaded = () => {
     return (
       <>
-        <h1>{directory.title}</h1>
-        <h2>{directory.description}</h2>
-        
-        <button onClick={handleShowForm}>Add New Snippet</button>
-        
+        <div className="snipPage">
+          <h1>{directory.title}</h1>
+          <h2>{directory.description}</h2>
+          <br />
+          <button onClick={handleShowForm}>Would You like to Add a Snippet?</button>
+        </div>
       </>
     );
   };
@@ -172,6 +173,7 @@ const Show = (props) => {
   };
 
   return (
+    <>
     <div className="directory">
       { directory ? loaded() : loading()}
       { (inShow === true)  &&
@@ -190,9 +192,11 @@ const Show = (props) => {
             name="description"
             placeholder="description"
             onChange={handleChange}
+            rows="4"
+            cols="50"
             required
           ></textarea> 
-          <textarea
+          <textarea id="codeblock"
             type="text"
             value={editForm.codeSnip}
             name="codeSnip"
@@ -214,7 +218,9 @@ const Show = (props) => {
         </form>
       }
       <SnipList snippets={snippets} handleDelete={handleDelete} handleEdit={handleEdit}/>
+    
     </div>
+    </>
   )
 }
 

@@ -26,11 +26,10 @@ import { useParams } from "react-router-dom";
     // const snippetId = params.snippetID
     return (
         <div className= "snippet-details">
-            SnippetDetails
-            <h2>{Snippet.title}</h2>
-            <p>{Snippet.description}</p>
-            <p id="codeSnip">{Snippet.codeSnip}</p>
-            <p>{Snippet.articles}</p>
+            <h2 id="title">{Snippet.title}</h2>
+            Description<p id="description">{Snippet.description}</p>
+            CodeSnippet<p id="codeSnip">{Snippet.codeSnip}</p>
+            Article<p id="title">{Snippet.articles}</p>
         </div>
     )
 }

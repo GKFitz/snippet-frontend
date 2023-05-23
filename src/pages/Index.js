@@ -41,13 +41,17 @@ const Index = (props) => {
   // }
     // loaded function
     const loaded = () => {
+        
         return props.directories.map((directory) => (
-            <div key={directory._id} className="directory">
+          <div key={directory._id} className="directoryFront">
+                
                 <Link to={`/directory/${directory._id}`}><h1>{directory.title}</h1></Link>
                 <h3>{directory.description}</h3>
                 {/* <button onClick={(e)=>deleteDirectory(directory._id)} >Delete </button>  */}
             </div>
+          
         ));
+    
     };
 
     const loading = () => {
@@ -58,8 +62,11 @@ const Index = (props) => {
 
 
     return (
-        <section>
-            <form onSubmit={handleSubmit}>
+      <>
+        <div className="create-form">
+        
+            <form id="create" onSubmit={handleSubmit}>
+              Would you like to create a new Directory?
                 <input
                     type="text"
                     value={newForm.title}
@@ -74,12 +81,15 @@ const Index = (props) => {
                     placeholder="description"
                     onChange={handleChange}
                 />
-                <input type="submit" value="Create New Directory" />
+                <button id="createDirectbtn"><input type="submit" value="Create New Directory" /></button>
             </form>
-            {props.directories ? loaded() : loading()}
-            {/* <Main deleteDirectory={deleteDirectory} /> */}
-        </section>
-    );
+          </div>
+          {props.directories ? loaded() : loading()}
+      </>
+        
+         
+        
+    )
 } 
 
 export default Index;

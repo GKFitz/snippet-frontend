@@ -5,6 +5,7 @@ import Index from "../pages/Index";
 import Show from "../pages/Show";
 import About from "../pages/About";
 import SnipDetails from "./SnippetDetails";
+// import bgPhoto from "../assets/bgPhoto.jpg"
 
 
 export const Main = (props) => {
@@ -58,7 +59,13 @@ export const Main = (props) => {
   useEffect(() => {getDirectory()}, []);
 
     return (
-        <main>
+      <>
+      <div className="title">
+          <h1>Gillian's Code Cache</h1>
+        </div>
+
+        
+        
             <Routes>
                 <Route exact path="/" element={ <Index 
                 directories={directories} 
@@ -72,7 +79,7 @@ export const Main = (props) => {
                 <Route path="/snip/:id" element= {<SnipDetails /> } />
                 {/* <Route path = "/directory/:id/snippets/:id" element={<SnippetDetails /> } /> */}
             </Routes>
-        </main>
+      </>
     )
 }
 export default Main;
