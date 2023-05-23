@@ -76,7 +76,7 @@ const Show = (props) => {
           codeSnip: editForm.codeSnip,
           articles: editForm.articles
         }),
-        }).then(res => res.json)
+        }).then(res => res.json())
           .then((res) => {
           console.log(res);
           setSnippets([

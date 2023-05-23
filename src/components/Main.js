@@ -11,7 +11,7 @@ export const Main = (props) => {
     const [ directories, setDirectories ] = useState(null);
 
   // const URL = "process.env.REACT_APP_BASE_URL";
-  const URL = "https://gillians-code-cache-app-be.onrender.com/api/directory/";
+  const URL = `${process.env.REACT_APP_BASE_URL}/api/directory/`;
 
   const getDirectory = async () => {
     console.log("i've been hit!")
@@ -55,7 +55,7 @@ export const Main = (props) => {
     getDirectory();
   }
 
-  useEffect(() => getDirectory(), []);
+  useEffect(() => getDirectory, []);
 
     return (
         <main>
