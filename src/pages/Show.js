@@ -43,8 +43,8 @@ const Show = (props) => {
           // console.log(res.snippets)
           setSnippets(res.snippets)
       })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  
+  }, [id])
   
   console.log(snippets)
   //This handles the Form Data Change

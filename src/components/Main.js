@@ -55,7 +55,7 @@ export const Main = (props) => {
     getDirectory();
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getDirectory(), []);
+  useEffect(() => {getDirectory()}, []);
 
     return (
         <main>
