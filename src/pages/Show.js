@@ -33,7 +33,7 @@ const Show = (props) => {
   useEffect( () => {
    
     // fetch(`http://localhost:4000/api/directory/get/${id}`, {
-    fetch(`https://gillians-code-cache-app-be.onrender.com/api/directory/get/${id}/`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/directory/get/${id}/`, {
       method: "GET",
       headers: {
         "content-Type": "application/json"
@@ -112,7 +112,7 @@ const Show = (props) => {
   const handleEdit = (id) => {
     setInShow(prevState => !prevState)
     // fetch(`http://localhost:4000/api/snippets/${id}`,{
-    fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/${id}/`,{
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/snippets/${id}/`,{
       method: "GET",
       headers: {
         "content-Type": "application/json"
@@ -142,7 +142,7 @@ const Show = (props) => {
   //This in the Function for the Delete button on the Snips
   const handleDelete = (snippet) => {
     // fetch(`http://localhost:4000/api/snippets/delete/${snippet}`, {
-    fetch(`https://gillians-code-cache-app-be.onrender.com/api/snippets/delete/${snippet}/`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/snippets/delete/${snippet}/`, {
       method: "DELETE",
       headers:{
         "content-Type": "application/json"
