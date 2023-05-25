@@ -150,7 +150,7 @@ const Show = (props) => {
       }
     }).then(res => res.json())
     .then(res => console.log(res))
-    window.location.reload()
+    // window.location.reload()
   }
     
   
