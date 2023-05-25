@@ -104,8 +104,18 @@ const Show = (props) => {
           articles: editForm.articles
         })
       }).then(res => res.json())
-        .then(res => console.log(res))
-        window.location.reload()
+        .then(res => {
+          console.log(res)
+          setSnippets([
+            ...snippets,
+            res
+
+            
+          ])
+          alert('Snippet Edited!');
+        }).catch(error =>{
+          console.log(error)
+        })
       }
     }
       
