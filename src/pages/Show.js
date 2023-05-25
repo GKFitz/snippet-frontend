@@ -153,7 +153,7 @@ const Show = (props) => {
     window.location.reload()
   }
     
-  }
+  
 
 
   
