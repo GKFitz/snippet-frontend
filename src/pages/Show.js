@@ -119,8 +119,9 @@ const Show = (props) => {
       }
       }).then(res=>res.json())
         .then(res => {
-          console.log(res)
-      setEditForm({
+        console.log(res)
+        
+        setEditForm({
         title: res.title,
         description: res.description,
         codeSnip: res.codeSnip,
@@ -148,10 +149,10 @@ const Show = (props) => {
         "content-Type": "application/json"
       }
     }).then(res => res.json())
-      .then(res => {
-        console.log(res)
-        window.location.reload()
-      })
+      // .then(res => {
+      //   console.log(res)
+      //   // window.location.reload()
+      // })
     
   }
 
