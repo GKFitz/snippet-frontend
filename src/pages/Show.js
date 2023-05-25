@@ -106,8 +106,8 @@ const Show = (props) => {
       }).then(res => res.json())
         .then(res => {
           console.log(res)
-          setIsEditing([
-            ...isEditing,
+          setInShow([
+            ...inShow,
             res
 
             
