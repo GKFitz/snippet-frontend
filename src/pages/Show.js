@@ -149,6 +149,12 @@ const Show = (props) => {
         "content-Type": "application/json"
       }
     }).then(res => res.json())
+    .then((res) => {
+      console.log(res);
+      setSnippets([
+        ...snippets,
+        res
+      ])
       // .then(res => {
       //   console.log(res)
       //   // window.location.reload()
